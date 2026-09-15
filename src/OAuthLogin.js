@@ -98,7 +98,7 @@ export default function Login() {
     <div style={styles.page}>
       <div style={styles.card}>
         <h1 style={styles.title}>Sign in</h1>
-        <p style={styles.subtitle}>Welcome back. Enter your details below.</p>
+        <p style={styles.subtitle}>Welcome back. Enter your details below</p>
 
         <form onSubmit={handleEmailLogin} style={styles.form}>
           <label style={styles.label}>
