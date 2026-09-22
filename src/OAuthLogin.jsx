@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const CLIENT_ID = "1061258886636-khms86es1fbv13sdhcu4un9j50gotk1c.apps.googleusercontent.com";
-const REDIRECT_URI = "http://localhost:3000/oauth/callback";
+const REDIRECT_URI = "http://localhost:5173/oauth/callback";
 const AUTHORIZATION_ENDPOINT = "https://accounts.google.com/o/oauth2/v2/auth";
 
 const SCOPES = [
@@ -53,7 +53,7 @@ export default function Login() {
 
     try {
       // Replace with your actual auth endpoint
-      const response = await fetch("http://localhost:3000/api/auth/login", {
+      const response = await fetch("http://localhost:5173/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

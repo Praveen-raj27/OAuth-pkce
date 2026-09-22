@@ -18,7 +18,7 @@ function OAuthCallback() {
     const authenticate = async () => {
       const params = new URLSearchParams(window.location.search);
       const code = params.get("code");
-      console.log(code, "code");
+  
       if (!code) {
         console.error("Authorization code missing");
         navigate("/login");
@@ -38,7 +38,7 @@ function OAuthCallback() {
             code,
             code_verifier: codeVerifier,
             grant_type: "authorization_code",
-            redirect_uri: "http://localhost:3000/oauth/callback",
+            redirect_uri: "http://localhost:5173/oauth/callback",
             client_secret: "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",
           }),
         });
