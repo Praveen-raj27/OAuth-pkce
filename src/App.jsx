@@ -5,11 +5,13 @@ import {
   Outlet,
   Navigate,
 } from "react-router-dom";
-import Login from "./OAuthLogin";
-import OAuthCallback from "./OAuthCallback";
-import GoogleCalendar from "./googleCalendar";
-import Header from "./header";
-import ErrorBoundary from "./error-boundry";
+import Login from "./features/oAuth/OAuthLogin";
+import OAuthCallback from "./features/oAuth/OAuthCallback";
+import GoogleCalendar from "./features/calendar/googleCalendar";
+import Header from "./components/layout/header";
+import ErrorBoundary from "./errors/error-boundry";
+import ToastContainer from "./features/notifications/toastContainer";
+import Loader from "./features/loader/loader";
 
 function ProtectedLayout() {
   const token = sessionStorage.getItem("access_token");
@@ -40,6 +42,8 @@ function Dashboard() {
 function App() {
   return (
     <BrowserRouter>
+    <ToastContainer/>
+    <Loader />
       <Routes>
         {/* Public routes — no header */}
         <Route path="/login" element={<Login />} />
