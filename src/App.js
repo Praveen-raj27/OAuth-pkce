@@ -1,8 +1,15 @@
-import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
 import Login from "./OAuthLogin";
 import OAuthCallback from "./OAuthCallback";
 import GoogleCalendar from "./googleCalendar";
 import Header from "./header";
+import ErrorBoundary from "./error-boundry";
 
 function ProtectedLayout() {
   const token = sessionStorage.getItem("access_token");
@@ -13,8 +20,10 @@ function ProtectedLayout() {
 
   return (
     <>
-      <Header />
-      <Outlet />
+      <ErrorBoundary>
+        <Header />
+        <Outlet />
+      </ErrorBoundary>
     </>
   );
 }

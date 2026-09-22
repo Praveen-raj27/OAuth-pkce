@@ -21,18 +21,7 @@ export default function Header() {
         navigate("/login");
         return;
       }
-
       try {
-    //     const response = await fetch(USERINFO_ENDPOINT, {
-    //       headers: { Authorization: `Bearer ${token}` },
-    //     });
-
-    //     if (response.status === 401) {
-    //       handleLogout();
-    //       return;
-    //     }
-
-    //     const data = await response.json();
         setUser({
           name: userProfile.name || userProfile.email,
           email: userProfile.email,
@@ -47,6 +36,11 @@ export default function Header() {
 
     fetchProfile();
   }, []);
+
+ if (!loading && !user) {
+  throw new Error("User profile could not be loaded");
+}
+
 
   // Close dropdown when clicking outside it
   useEffect(() => {
@@ -84,7 +78,6 @@ export default function Header() {
     setMenuOpen(false);
     navigate("/login");
   };
-
   return (
     <header style={styles.header}>
       <div style={styles.brand}>Welcome</div>

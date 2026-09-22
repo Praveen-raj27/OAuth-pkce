@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import api from './axiosClient'
 import { useNavigate } from "react-router-dom";
 
 export default function GoogleCalendar() {
@@ -22,46 +23,40 @@ export default function GoogleCalendar() {
     fetchCalendarEvents(token);
   }, []);
 
-  const fetchCalendarEvents = async (token) => {
-    try {
-      setLoading(true);
-      setError("");
+const fetchCalendarEvents = async () => {
+  try {
+    setLoading(true);
+    setError("");
 
-      const params = new URLSearchParams({
-        timeMin: new Date().toISOString(),
-        singleEvents: "true",
-        orderBy: "startTime",
-        maxResults: "20",
-      });
+    const params = {
+      timeMin: new Date().toISOString(),
+      singleEvents: true,
+      orderBy: "startTime",
+      maxResults: 20,
+    };
 
-      const response = await fetch(
-        `https://www.googleapis.com/calendar/v3/calendars/primary/events?${params}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+    const response = await api.get(
+      "/events",
+      { params }
+    );
 
-      if (response.status === 401) {
-        // Access token expired/invalid -> back to login to re-authenticate
-        sessionStorage.removeItem("access_token");
-        navigate("/login");
-        return;
-      }
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch Google Calendar events");
-      }
-
-      const data = await response.json();
-      setEvents(data.items || []);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
+    setEvents(response.data.items || []);
+  } catch (err) {
+    if (err.response?.status === 401) {
+      sessionStorage.removeItem("access_token");
+      navigate("/login");
+      return;
     }
-  };
+
+    setError(
+      err.response?.data?.error?.message ||
+      err.message ||
+      "Failed to fetch Google Calendar events"
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
   const formatEventDate = (event) => {
     const date = event.start?.dateTime || event.start?.date;
