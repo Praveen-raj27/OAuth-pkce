@@ -9,9 +9,9 @@ import Login from "./features/oAuth/OAuthLogin";
 import OAuthCallback from "./features/oAuth/OAuthCallback";
 import GoogleCalendar from "./features/calendar/googleCalendar";
 import Header from "./components/layout/header";
-import ErrorBoundary from "./errors/error-boundry";
 import ToastContainer from "./features/notifications/toastContainer";
 import Loader from "./features/loader/loader";
+import CommentThread from "./features/comments/commentThread";
 
 function ProtectedLayout() {
   const token = sessionStorage.getItem("access_token");
@@ -22,10 +22,8 @@ function ProtectedLayout() {
 
   return (
     <>
-      <ErrorBoundary>
         <Header />
         <Outlet />
-      </ErrorBoundary>
     </>
   );
 }
@@ -53,6 +51,7 @@ function App() {
         <Route element={<ProtectedLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/calendar" element={<GoogleCalendar />} />
+          <Route path="/comment" element={<CommentThread />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/login" replace />} />
