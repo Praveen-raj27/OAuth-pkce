@@ -69,7 +69,7 @@ function OAuthCallback() {
         );
         sessionStorage.removeItem("code_verifier");
 
-        navigate("/calendar");
+        navigate("/dashboard");
       } catch (err) {
         console.error("Authentication error:", err);
         navigate("/login");

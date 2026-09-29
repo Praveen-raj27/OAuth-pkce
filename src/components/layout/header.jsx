@@ -80,7 +80,7 @@ export default function Header() {
   };
   return (
     <header style={styles.header}>
-      <div style={styles.brand}>Welcome</div>
+      <div style={styles.brand}>Welcome {`to ${window.location.pathname.split('/')[1].toLocaleUpperCase()}`}</div>
 
       <div style={styles.right} ref={menuRef}>
         {loading ? (

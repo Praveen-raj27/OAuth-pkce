@@ -12,6 +12,9 @@ import Header from "./components/layout/header";
 import ToastContainer from "./features/notifications/toastContainer";
 import Loader from "./features/loader/loader";
 import CommentThread from "./features/comments/commentThread";
+import Dashboard from "./features/dashboard/index";
+import SideBar from "./components/layout/sidebar";
+import "./app.css";
 
 function ProtectedLayout() {
   const token = sessionStorage.getItem("access_token");
@@ -21,27 +24,25 @@ function ProtectedLayout() {
   }
 
   return (
-    <>
-        <Header />
-        <Outlet />
-    </>
-  );
-}
-
-function Dashboard() {
-  return (
-    <div style={{ maxWidth: 700, margin: "40px auto" }}>
-      <h2>Dashboard</h2>
-      <p>Welcome back.</p>
+    <div className="app">
+      <Header />
+      <div className="app-body">
+        <SideBar />
+        <main className="main-content">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }
 
+
+
 function App() {
   return (
     <BrowserRouter>
-    <ToastContainer/>
-    <Loader />
+      <ToastContainer />
+      <Loader />
       <Routes>
         {/* Public routes — no header */}
         <Route path="/login" element={<Login />} />
