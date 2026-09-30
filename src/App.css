@@ -1,40 +1,110 @@
-.flex{
+:root {
+  --app-bg: #f8fafc;
+  --content-bg: #ffffff;
+  --text-color: #1e293b;
+
+  --header-bg: #ffffff;
+  --header-text: #1a1a1a;
+  --header-border: #e5e5ea;
+
+  --dropdown-bg: #ffffff;
+  --dropdown-border: #e5e5ea;
+
+  --secondary-text: #666666;
+  --skeleton-bg: #f0f0f2;
+
+  --border-color: #e2e8f0;
+  --table-header-bg: #f8fafc;
+  --table-hover-bg: #f1f5f9;
+
+  --button-bg: #ffffff;
+  --input-bg: #ffffff;
+  --input-focus-border: #94a3b8;
+
+  /* Comments */
+  --comment-secondary-text: #787c7e;
+  --comment-border: #edeff1;
+  --comment-hover-bg: #f6f7f8;
+}
+
+[data-theme="dark"] {
+  --app-bg: #0f172a;
+  --content-bg: #1e293b;
+  --text-color: #f8fafc;
+
+  --header-bg: #0f172a;
+  --header-text: #f8fafc;
+  --header-border: #334155;
+
+  --dropdown-bg: #1e293b;
+  --dropdown-border: #475569;
+
+  --secondary-text: #cbd5e1;
+  --skeleton-bg: #334155;
+
+  --border-color: #475569;
+  --table-header-bg: #334155;
+  --table-hover-bg: #475569;
+
+  --button-bg: #1e293b;
+  --input-bg: #0f172a;
+  --input-focus-border: #64748b;
+
+  /* Comments */
+  --comment-secondary-text: #94a3b8;
+  --comment-border: #475569;
+  --comment-hover-bg: #334155;
+}
+
+.flex {
   display: flex;
 }
-.p-20{
+.align-center{
+  align-items: center;
+}
+
+.p-20 {
   padding: 20px;
 }
-.mb-0{
+
+.mb-0 {
   margin: 0;
 }
-.space-between{
+
+.space-between {
   justify-content: space-between;
 }
-.accordion{
-  padding: 10px;
-  border: 1px solid;
-  background-color: antiquewhite;
-  margin: 20px;
 
+.accordion {
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  background-color: var(--accordion-bg);
+  margin: 20px;
 }
-.btn, .btn-invert{
+
+.btn,
+.btn-invert {
   cursor: pointer;
 }
-.btn-invert{
- transform:  rotate(180deg)
+
+.btn-invert {
+  transform: rotate(180deg);
 }
-.accordion-icon{
-  cursor: pointer;
-}
+
 .accordion-icon {
+  cursor: pointer;
   transition: transform 0.3s;
 }
 
 .accordion-icon.open {
   transform: rotate(90deg);
 }
+
+
 .app {
   min-height: 100vh;
+  background-color: var(--app-bg);
+  color: var(--text-color);
 }
 
 .app-body {
@@ -45,5 +115,7 @@
 .main-content {
   flex: 1;
   padding: 30px;
-  background: #f8fafc;
+  background-color: var(--content-bg);
+  color: var(--text-color);
+  min-height: calc(100vh - 70px);
 }

@@ -1,0 +1,38 @@
+.theme-toggle {
+  width: 68px !important;
+  height: 36px !important;
+  padding: 0 !important;
+}
+
+.theme-toggle .MuiSwitch-switchBase {
+  padding: 8px;
+  transition: transform 0.25s ease;
+}
+
+.theme-toggle .MuiSwitch-thumb {
+  width: 28px;
+  height: 28px;
+  box-shadow: none;
+}
+
+.theme-toggle .MuiSwitch-track {
+  border-radius: 20px;
+  background-color: #a6a6a6;
+  opacity: 1;
+}
+
+/* Checked state */
+.theme-toggle .MuiSwitch-switchBase.Mui-checked {
+  transform: translateX(32px);
+}
+
+.theme-toggle .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
+  background-color: #333;
+  opacity: 1;
+}
+
+/* Icons */
+.toggle-icon {
+  width: 20px !important;
+  height: 20px !important;
+}

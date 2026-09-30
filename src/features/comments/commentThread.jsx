@@ -27,6 +27,31 @@ function addReplyToComment(comments, parentId, newComment) {
     return comment;
   });
 }
+function updateLikeCount(comments, commentId, likeCount) {
+  return comments.map((comment) => {
+    // Found the comment
+    if (comment.id === commentId) {
+      return {
+        ...comment,
+        likes: likeCount,
+      };
+    }
+
+    // Search inside nested replies
+    if (comment.replies?.length > 0) {
+      return {
+        ...comment,
+        replies: updateLikeCount(
+          comment.replies,
+          commentId,
+          likeCount
+        ),
+      };
+    }
+
+    return comment;
+  });
+}
 function CommentThread() {
   const [comments, setComments] = useState(initialComments);
 
@@ -48,7 +73,15 @@ function CommentThread() {
       addReplyToComment(currentComments, parentId, newComment)
     );
   };
-
+const addLike = (commentId, likeCount) => {
+  setComments((currentComments) =>
+    updateLikeCount(
+      currentComments,
+      commentId,
+      likeCount
+    )
+  );
+};
   return (
     <div className="comment-thread">
       {comments.map((comment) => (
@@ -56,6 +89,7 @@ function CommentThread() {
           key={comment.id}
           comment={comment}
           onReply={addReply}
+          onLike={addLike}
         />
       ))}
     </div>

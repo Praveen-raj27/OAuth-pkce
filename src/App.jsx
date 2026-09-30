@@ -14,7 +14,7 @@ import Loader from "./features/loader/loader";
 import CommentThread from "./features/comments/commentThread";
 import Dashboard from "./features/dashboard/index";
 import SideBar from "./components/layout/sidebar";
-import "./app.css";
+import "./App.css";
 
 function ProtectedLayout() {
   const token = sessionStorage.getItem("access_token");
